@@ -1,0 +1,13 @@
+name: EventTrigger
+version: '${project.version}'
+main: io.github.freakyville.eventtrigger.EventTrigger
+api-version: '1.21'
+depend:
+  - PlaceholderManager
+commands:
+  eventtrigger:
+    description: EventTrigger command
+    usage: /eventtrigger
+    permission: eventtrigger.command
+    aliases: [ et ]
+    permission-message: You do not have permission to use this command

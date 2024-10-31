@@ -1,0 +1,13 @@
+io\github\freakyville\eventtrigger\services\BlockActionService.class
+io\github\freakyville\eventtrigger\models\EntityEventModel.class
+io\github\freakyville\eventtrigger\commands\MainCommand.class
+io\github\freakyville\eventtrigger\listeners\EntityDeathListener.class
+io\github\freakyville\eventtrigger\listeners\BlockBreakListener.class
+io\github\freakyville\eventtrigger\services\EntityActionService.class
+io\github\freakyville\eventtrigger\EventTrigger.class
+io\github\freakyville\eventtrigger\settings\Settings.class
+io\github\freakyville\eventtrigger\models\CraftEventModel.class
+io\github\freakyville\eventtrigger\listeners\BlockPlaceListener.class
+io\github\freakyville\eventtrigger\models\BlockEventModel.class
+io\github\freakyville\eventtrigger\listeners\CraftItemListener.class
+io\github\freakyville\eventtrigger\services\CraftActionService.class
