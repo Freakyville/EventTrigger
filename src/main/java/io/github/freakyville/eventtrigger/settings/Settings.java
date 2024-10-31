@@ -29,12 +29,14 @@ public class Settings {
         ConfigurationSection configurationSection = configManager.getConfigurationSection("events");
         if (configurationSection == null) {
             logger.severe("Events section not found");
+            return;
         }
         configurationSection.getKeys(false).forEach(key -> {
             boolean enabled = configurationSection.getBoolean(key + ".enabled");
             String string = configurationSection.getString(key + ".type");
             if (string == null) {
                 logger.severe("Type not found for event " + key);
+                return;
             }
             if (string.equalsIgnoreCase("block")) {
                 loadBlockEvents(key, enabled, configurationSection);
@@ -50,41 +52,29 @@ public class Settings {
 
     private void loadCraftEvents(String key, boolean enabled, ConfigurationSection configurationSection) {
         if (!enabled) {
-            craftEventModels.put(key, new CraftEventModel(key, false, new ArrayList<>(), new ArrayList<>()));
+            craftEventModels.put(key, new CraftEventModel(key, false, new ArrayList<>()));
             return;
         }
         List<String> items = configurationSection.getStringList(key + ".items");
-        List<String> actions = configurationSection.getStringList(key + ".actions");
-        if (actions.isEmpty()) {
-            Bukkit.getLogger().severe("Actions not found for event " + key);
-        }
-        craftEventModels.put(key, new CraftEventModel(key, true, items, actions));
+        craftEventModels.put(key, new CraftEventModel(key, true, items));
     }
 
     private void loadEntityEvents(String key, boolean enabled, ConfigurationSection configurationSection) {
         if (!enabled) {
-            entityEventModels.put(key, new EntityEventModel(key, false, new ArrayList<>(), new ArrayList<>()));
+            entityEventModels.put(key, new EntityEventModel(key, false, new ArrayList<>()));
             return;
         }
         List<String> entities = configurationSection.getStringList(key + ".entities");
-        List<String> actions = configurationSection.getStringList(key + ".actions");
-        if (actions.isEmpty()) {
-            Bukkit.getLogger().severe("Actions not found for event " + key);
-        }
-        entityEventModels.put(key, new EntityEventModel(key, true, entities, actions));
+        entityEventModels.put(key, new EntityEventModel(key, true, entities));
     }
 
     private void loadBlockEvents(String key, boolean enabled, ConfigurationSection configurationSection) {
         if (!enabled) {
-            blockEventModels.put(key, new BlockEventModel(key, false, new ArrayList<>(), new ArrayList<>()));
+            blockEventModels.put(key, new BlockEventModel(key, false, new ArrayList<>()));
             return;
         }
         List<String> blocks = configurationSection.getStringList(key + ".blocks");
-        List<String> actions = configurationSection.getStringList(key + ".actions");
-        if (actions.isEmpty()) {
-            Bukkit.getLogger().severe("Actions not found for event " + key);
-        }
-        blockEventModels.put(key, new BlockEventModel(key, true, blocks, actions));
+        blockEventModels.put(key, new BlockEventModel(key, true, blocks));
     }
 
     public BlockEventModel getBlockSettings(String event) {

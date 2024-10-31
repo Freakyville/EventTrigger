@@ -7,13 +7,11 @@ public class CraftEventModel {
     private final String name;
     private final boolean enabled;
     private final List<String> items;
-    private final List<String> command;
 
-    public CraftEventModel(String name, boolean enabled, List<String> items, List<String> command) {
+    public CraftEventModel(String name, boolean enabled, List<String> items) {
         this.name = name;
         this.enabled = enabled;
         this.items = items;
-        this.command = command;
     }
 
     public String getName() {
@@ -26,9 +24,5 @@ public class CraftEventModel {
 
     public List<String> getItems() {
         return new ArrayList<>(items);
-    }
-
-    public List<String> getCommands() {
-        return new ArrayList<>(command);
     }
 }
