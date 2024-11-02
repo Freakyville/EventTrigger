@@ -26,7 +26,8 @@ public class EntityActionService {
         if (!isOkayEntity) {
             return;
         }
-        cpcApi.addToPlaceholder(player.getUniqueId(), entitySettings.getName() + "_" + entityName, 1);
+        String placeholder = entitySettings.getName() + "_" + entityName;
+        cpcApi.addToPlaceholder(player.getUniqueId(), placeholder.replace("_", "-"), 1);
     }
 
 }

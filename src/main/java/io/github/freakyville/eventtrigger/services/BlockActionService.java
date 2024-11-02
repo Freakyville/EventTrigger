@@ -7,7 +7,6 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -32,10 +31,11 @@ public class BlockActionService {
         }
 
         String name = getName(block);
-        cpcApi.addToPlaceholder(player.getUniqueId(), eventSetting.getName() + "_" + name, 1);
+
+        String placeholder = eventSetting.getName() + "-" + name;
+        cpcApi.addToPlaceholder(player.getUniqueId(), placeholder.replace("_", "-"), 1);
     }
 
-    @NotNull
     private String getName(Block block) {
         if (block.getType().equals(Material.WHEAT)) {
             Ageable ageable = (Ageable) block.getBlockData();

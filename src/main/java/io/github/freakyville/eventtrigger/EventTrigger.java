@@ -53,15 +53,17 @@ public final class EventTrigger extends PluginModule {
     }
 
     @Override
-    public void onDisable() {
+    public void onEnabled() {
+
     }
 
     @Override
     public void onDisabled() {
+
     }
 
     @Override
-    public void onEnabled() {
+    public void onDisable() {
     }
 
     @Override

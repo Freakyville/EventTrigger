@@ -26,6 +26,7 @@ public class CraftActionService {
         if (!isOkayEntity) {
             return;
         }
-        cpcApi.addToPlaceholder(player.getUniqueId(), craftSettings.getName() + "_" + itemName, 1);
+        String placeholder = craftSettings.getName() + "-" + itemName;
+        cpcApi.addToPlaceholder(player.getUniqueId(), placeholder.replace("_", "-"), 1);
     }
 }
