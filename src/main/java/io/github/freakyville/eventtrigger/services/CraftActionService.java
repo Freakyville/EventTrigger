@@ -6,6 +6,8 @@ import io.github.freakyville.pmp.api.CPCAPI;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.List;
+
 public class CraftActionService {
     private final Settings settings;
     private final CPCAPI cpcApi;
@@ -22,8 +24,9 @@ public class CraftActionService {
             return;
         }
         String itemName = item.getType().name();
-        boolean isOkayEntity = craftSettings.getItems().contains(itemName);
-        if (!isOkayEntity) {
+        List<String> items = craftSettings.getItems();
+        boolean isOkayEntity = items.contains(itemName);
+        if (!isOkayEntity && !items.isEmpty()) {
             return;
         }
         String placeholder = craftSettings.getName() + "-" + itemName;

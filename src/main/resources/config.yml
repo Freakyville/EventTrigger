@@ -1,41 +1,25 @@
 events:
   BlockBreakEvent:
+    enabled: true
     type: "BLOCK"
     blocks:
       - "GROWN_WHEAT"
-      - "GOLD_ORE"
-      - "IRON_ORE"
-      - "GRASS_BLOCK"
-      - "STONE"
-    enabled: true
-    actions:
-      - "broadcast %player% broke a %block%!"
+      - "SUGAR_CANE"
+      - "GROWN_PUMPKIN"
+      - "GROWN_CARROT"
+      - "GROWN_POTATO"
+      - "GROWN_MELON"
+      - "CACTUS"
   BlockPlaceEvent:
+    enabled: false
     type: "BLOCK"
-    blocks:
-      - "DIAMOND_ORE"
-      - "GOLD_ORE"
-      - "IRON_ORE"
-      - "GRASS_BLOCK"
-      - "STONE"
-    enabled: true
-    actions:
-      - "broadcast %player% placed a %block%!"
+    blocks: []
   EntityDeathEvent:
-    type: "ENTITY"
-    entities:
-      - "COW"
-      - "PIG"
-      - "SHEEP"
-      - "CHICKEN"
-      - "ZOMBIE"
     enabled: true
-    actions:
-      - "broadcast %player% killed a %entity%!"
+    type: "ENTITY"
+    entities: []
   CraftItemEvent:
+    enabled: true
     type: "CRAFT"
     entities:
       - "FURNACE"
-    enabled: true
-    actions:
-      - "broadcast %player% crafted a %item%!"

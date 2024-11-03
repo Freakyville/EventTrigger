@@ -6,6 +6,8 @@ import io.github.freakyville.pmp.api.CPCAPI;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
+import java.util.List;
+
 public class EntityActionService {
     private final Settings settings;
     private final CPCAPI cpcApi;
@@ -22,8 +24,9 @@ public class EntityActionService {
             return;
         }
         String entityName = entity.getType().name();
-        boolean isOkayEntity = entitySettings.getEntities().contains(entityName);
-        if (!isOkayEntity) {
+        List<String> entities = entitySettings.getEntities();
+        boolean isOkayEntity = entities.contains(entityName);
+        if (!isOkayEntity && !entities.isEmpty()) {
             return;
         }
         String placeholder = entitySettings.getName() + "_" + entityName;

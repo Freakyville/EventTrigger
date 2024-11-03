@@ -37,12 +37,41 @@ public class BlockActionService {
     }
 
     private String getName(Block block) {
-        if (block.getType().equals(Material.WHEAT)) {
-            Ageable ageable = (Ageable) block.getBlockData();
-            int age = ageable.getAge();
-            if (age == ageable.getMaximumAge()) return "GROWN_WHEAT";
+        switch (block.getType()) {
+            case CARROT:
+                if (isMaxAge(block)) return "GROWN_CARROT";
+                break;
+            case POTATO:
+                if (isMaxAge(block)) return "GROWN_POTATO";
+                break;
+            case BEETROOT:
+                if (isMaxAge(block)) return "GROWN_BEETROOT";
+                break;
+            case NETHER_WART:
+                if (isMaxAge(block)) return "GROWN_NETHER_WART";
+                break;
+            case COCOA:
+                if (isMaxAge(block)) return "GROWN_COCOA";
+                break;
+            case PUMPKIN:
+                if (isMaxAge(block)) return "GROWN_PUMPKIN";
+                break;
+            case MELON:
+                if (isMaxAge(block)) return "GROWN_MELON";
+                break;
+            case WHEAT:
+                if (isMaxAge(block)) return "GROWN_WHEAT";
+                break;
+            default:
+                break;
         }
         return block.getType().name();
+    }
+
+    private boolean isMaxAge(Block block) {
+        Ageable ageable = (Ageable) block.getBlockData();
+        int age = ageable.getAge();
+        return age == ageable.getMaximumAge();
     }
 
     private boolean isOkayBlock(Block block, BlockEventModel eventSetting) {
