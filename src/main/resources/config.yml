@@ -13,13 +13,16 @@ events:
   BlockPlaceEvent:
     enabled: false
     type: "BLOCK"
-    blocks: []
+    blocks: [ ]
   EntityDeathEvent:
     enabled: true
     type: "ENTITY"
-    entities: []
+    entities: [ ]
   CraftItemEvent:
     enabled: true
     type: "CRAFT"
     entities:
       - "FURNACE"
+  PlayerExpChangeEvent:
+    enabled: true
+    type: "EXP"

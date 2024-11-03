@@ -3,6 +3,7 @@ package io.github.freakyville.eventtrigger.settings;
 import io.github.freakyville.eventtrigger.models.BlockEventModel;
 import io.github.freakyville.eventtrigger.models.CraftEventModel;
 import io.github.freakyville.eventtrigger.models.EntityEventModel;
+import io.github.freakyville.eventtrigger.models.ExpEventModel;
 import io.github.freakyville.utilsupdated.config.ConfigManager;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
@@ -17,6 +18,7 @@ public class Settings {
     private final Map<String, BlockEventModel> blockEventModels = new HashMap<>();
     private final Map<String, EntityEventModel> entityEventModels = new HashMap<>();
     private final Map<String, CraftEventModel> craftEventModels = new HashMap<>();
+    private final Map<String, ExpEventModel> expEventModels = new HashMap<>();
     private final ConfigManager configManager;
 
     public Settings(ConfigManager configManager) {
@@ -44,10 +46,20 @@ public class Settings {
                 loadEntityEvents(key, enabled, configurationSection);
             } else if (string.equalsIgnoreCase("craft")) {
                 loadCraftEvents(key, enabled, configurationSection);
+            } else if (string.equalsIgnoreCase("exp")) {
+                loadExpEvents(key, enabled);
             } else {
                 logger.severe("Type " + string + " not found for event " + key);
             }
         });
+    }
+
+    private void loadExpEvents(String key, boolean enabled) {
+        if (!enabled) {
+            expEventModels.put(key, new ExpEventModel(key, false));
+            return;
+        }
+        expEventModels.put(key, new ExpEventModel(key, true));
     }
 
     private void loadCraftEvents(String key, boolean enabled, ConfigurationSection configurationSection) {
@@ -101,8 +113,19 @@ public class Settings {
         return craftEventModel;
     }
 
+    public ExpEventModel getExpSettings(String event) {
+        ExpEventModel expEventModel = expEventModels.get(event);
+        if (expEventModel == null) {
+            Bukkit.getLogger().severe("Event " + event + " not found");
+        }
+        return expEventModel;
+    }
+
     public void reload() {
         blockEventModels.clear();
+        entityEventModels.clear();
+        craftEventModels.clear();
+        expEventModels.clear();
         this.configManager.reloadCustomConfig();
         load();
     }
